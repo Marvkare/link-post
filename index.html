@@ -11,7 +11,12 @@
 <body>
     <h1>Api Graph</h1>
     <div id="status"></div>
+
+    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+    </fb:login-button>
+
     <script>
+
         function statusChangeCallback(response) {
             console.log('statusChangeCallback');
             console.log(response);
@@ -34,7 +39,11 @@
             }
         }
 
-
+        function checkLoginState() {
+            FB.getLoginStatus(function (response) {
+                statusChangeCallback(response);
+            });
+        }
         window.fbAsyncInit = function () {
             FB.init({
                 appId: '897287540830802',
